@@ -1,9 +1,24 @@
+```{r}
+# Read data
+choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
+head(choco)
+```
+
 **Question set 1**
 
 1. What is the overall number of chocolate bars rated?
+```{r}
+summary(choco)
+```
+
+There are 1852 chocolate bars rated.
 
 2. How does the number of ratings depend on the year? Draw a bar chart of the number of reports.
-
+```{r}
+library(ggplot2)
+ggplot(data = choco, aes(x=Review.Date)) + geom_bar()
+```
+The number of ratings increases until 2015 and a sharp decline occurs.
 
 **Question set 2**
 
