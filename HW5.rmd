@@ -18,6 +18,7 @@ There are 1852 chocolate bars rated.
 library(ggplot2)
 ggplot(data = choco, aes(x=Review.Date)) + geom_bar()
 ```
+
 The number of ratings increases until 2015 and a sharp decline occurs.
 
 **Question set 2**
@@ -26,30 +27,35 @@ The number of ratings increases until 2015 and a sharp decline occurs.
 ```{r}
 ggplot(data = choco, aes(x =Rating)) + geom_histogram(bins = 20)
 ```
+
 Majority of the chocolate's rating are centered around ~2.7 to ~3.6. The average rating of around 3.5 could be deferred from the graph. The histogram seems to be unimodal and shares a normal distribution.
 
 2. Do ratings depend on the cocoa percentage of a chocolate bar?
 ```{r}
 ggplot(data = choco, aes(x = Cocoa.Pct, y = Rating)) + geom_point()
 ```
+
 We can observe that the highest and lowest rating are from chocolate bar's with 70% cocoa percentage, so we can't really draw a conclusive statement from this graph alone.
+
 ```{r}
 library(dplyr)
 pctdata = choco %>% group_by(Cocoa.Pct) %>% summarise(count = n(), avgrate = mean(Rating))
 
 ggplot(data = pctdata, aes(x = Cocoa.Pct, y = avgrate)) + geom_point(aes(size = count))
 ```
+
 By grouping cocoa percentage and plotting their average rating, we can note that 50% cocoa percentage yields the highest rating. However, there is likely prone to error as there is a relatively small sample size for chocolate bar with 50% cocoa percentage. Such, it is inconclusive if there are correlation between cocoa percentage and ratings.
 
 3. How do ratings compare across different company locations? Focus on the three locations with the most ratings
 ```{r}
 cmpcnt = choco %>% count(Company) %>% arrange(desc(n))
-cmpcnt
+head(cmpcnt)
 
 cmpdata = choco %>% filter(Company %in% c('Soma', 'Bonnat', 'Fresco'))
 ggplot(data = cmpdata, aes(x = Company, y = Rating)) + geom_boxplot()
 ggplot(data = cmpdata, aes(x = Rating)) + geom_bar() + facet_wrap(~Company)
 ```
+
 Bonnat has percentile of its rating's around 4 which is by far the highest comparatively amongst the three company. Whereas, Soma has the highest mean rating for their chocolate with a dense collection around 3.5 and above. Fresco similarly has most of its rating averaging around 3.5, though it has lesser bars proportionately above that.
 
 **Own question**
@@ -59,4 +65,5 @@ beandata = choco %>% group_by(Specific.Bean.Origin) %>% summarise(count = n(), a
 
 ggplot(data = beandata, aes(x = Specific.Bean.Origin, y = avgrate)) + geom_point(aes(size = count, color = Specific.Bean.Origin), show.legend = FALSE) + coord_flip()
 ```
+
 From the plot, we can see that Porcelana produces the highest average rated beans compared to other region.
