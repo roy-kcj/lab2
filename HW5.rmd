@@ -73,6 +73,7 @@ From the plot, we can see that Porcelana produces the highest average rated bean
 yearRating = choco %>% group_by(Review.Date) %>% summarise(meanRating = mean(Rating))
 ggplot(data = yearRating, aes(x=Review.Date, y=meanRating)) + geom_bar(stat="identity") 
 
+library(forcats)
 yearRating_sort = yearRating%>% arrange(meanRating)
 yearRating_sort$Review.Date = as.character(yearRating_sort$Review.Date)
 ggplot(data = yearRating_sort, aes(x=fct_reorder(Review.Date,meanRating), y=meanRating)) + geom_bar(stat="identity") + xlab("Review.Date") + ggtitle("Mean ratings in ascending")
