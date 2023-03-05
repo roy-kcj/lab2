@@ -59,6 +59,7 @@ ggplot(data = cmpdata, aes(x = Rating)) + geom_bar() + facet_wrap(~Company)
 Bonnat has percentile of its rating's around 4 which is by far the highest comparatively amongst the three company. Whereas, Soma has the highest mean rating for their chocolate with a dense collection around 3.5 and above. Fresco similarly has most of its rating averaging around 3.5, though it has lesser bars proportionately above that.
 
 **Own question**
+
 1. (Roy) Which location produces the bean with the highest average rating with at least 10 rating?
 ```{r}
 beandata = choco %>% group_by(Specific.Bean.Origin) %>% summarise(count = n(), avgrate = mean(Rating)) %>% filter(count >= 10)
