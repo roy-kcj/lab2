@@ -1,3 +1,20 @@
+---
+title: "Chocalate Bar Analysis"
+author: 
+  - Roy
+  - Xuan Wen
+date: "2023-03-01"
+---
+
+Repository: https://github.com/roy-kcj/lab2 
+
+Workflow: 
+- Question Set 1 (Xuan Wen)
+- Question Set 2 (Roy)
+
+The work was split into question sets and we both work individually on our respective set of questions. Individual questions are stamped by names in the document for the person responsible to making and answering it. 
+
+
 ```{r}
 # Read data
 choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
